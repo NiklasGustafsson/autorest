@@ -963,7 +963,7 @@ gulp.task('default', function(cb){
   //   Test then runs in DEBUG, but uses the packages created in package
   if (isWindows) {
 //'analysis',
-    runSequence('clean', 'build:release', 'build', 'test', cb);
+    runSequence('clean', 'build:release', 'build', cb);
   } else {
     runSequence('clean', 'build', 'test', cb);
   }

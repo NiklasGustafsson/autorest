@@ -1,0 +1,26 @@
+﻿@using AutoRest.CSharp.Model
+@using AutoRest.CSharp.Templates
+@inherits AutoRest.Core.Template<AutoRest.CSharp.Model.MethodGroupCs>
+@Header("// ")
+@EmptyLine
+namespace @(Settings.Namespace).Controllers
+{
+    using Microsoft.AspNetCore.Mvc;
+@foreach (var usingString in Model.Usings) {
+    @:using @usingString;
+}
+@EmptyLine
+    /// <summary>
+    /// @(Model.TypeName) operations.
+    /// </summary>
+    [Route("@(new System.Uri(Model.CodeModel.BaseUrl).LocalPath.TrimStart('/'))")]
+    public partial class @(Model.TypeName)Controller : Controller
+    {
+    @EmptyLine
+    @foreach (MethodCs method in Model.Methods)
+    {
+        @:@(Include(new MethodTemplate(), method))
+        @EmptyLine
+    }
+    }
+}
